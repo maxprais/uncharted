@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>brilliant workaround</title>
+</head>
+<body>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+<script>
+    SC.initialize({
+      client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
+    });
+    var tracks = [];
+    SC.get('/tracks', {limit:200}).then(function (data) {
+        console.log(data[0]);
+        data.forEach(function (v) {
+            tracks.push(v);
+        });
+        console.log(tracks);
+        andThen();
+    });
+
+    function andThen() {
+        var allTracks = [];
+        tracks.forEach(function (val, ind) {
+            newTrack = {};
+            newTrack['id'] = ind;
+            newTrack['song-title'] = val.title;
+            newTrack['song-id'] = val.id;
+            newTrack['user-name'] = val.user.username;
+            newTrack['user-id'] = val.user_id;
+            newTrack['user-image'] = val.user.avatar_url;
+            newTrack['song-image'] = val.artwork_url;
+            newTrack['song-url'] = val.permalink_url;
+            newTrack['sharing'] = val.sharing;
+            newTrack['genre'] = val.genre;
+            newTrack['bpm'] = val.bpm;
+            newTrack['waveform-url'] = val.waveform_url;
+            newTrack['playback-count'] = val.playback_count;
+            newTrack['duration'] = val.duration;
+
+            $.post('/savesong', newTrack, function (data) {
+                console.log(data);
+            });
+            allTracks.push(newTrack);
+        });
+
+        return;
+    }
+
+
+
+</script>
+</body>
+</html>

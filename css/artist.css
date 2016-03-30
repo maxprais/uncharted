@@ -1,0 +1,155 @@
+.top-wrapper{
+    background-color: #62DA64;
+    text-align: center;
+    height: 120px;
+}
+body{
+    font-family: "Century Gothic", sans-serif !important;
+    text-transform: uppercase;
+}
+.product-description{
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+.email{
+    color: darkblue;
+}
+.clickable{
+    cursor: pointer;
+}
+.hidden{
+    display: none;
+}
+.logos{
+    text-align: center;
+    margin-top: 25px;
+    background-image: url('../images/logonotext.png');
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logos:hover{
+    background-image: url('../images/logogreen.png');
+}
+.ready{
+    margin-top: 20px;
+}
+.logonotext{
+    height: 100px;
+    width: 100px;
+}
+.logogreen{
+    height: 100px;
+    width: 100px;
+}
+.logo{
+    margin-top: 10px;
+    height: 95px;
+    width: 550px;
+    display: inline-block;
+}
+.about-header{
+    margin-top: 40px;
+}
+.listen-div{
+    margin-top: 40px;
+}
+
+.main-wrapper{
+    text-align: center;
+    height: 450px;
+}
+
+.footer{
+    text-align: center;
+    color: darkgray;
+    bottom: 0px;
+    margin-top: 0.5%;
+}
+.product-description{
+    margin-top: 80px;
+}
+
+@media screen and (max-width: 540px){
+    .logo{
+        height: 70px;
+        width: 450px;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .logo{
+        height: 70px;
+        width: 350px;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .logo{
+        height: 65px;
+        width: 320px;
+        margin-top: 25px;
+    }
+}
+
+
+.info-holder{
+    text-align: center;
+    display: inline-block;
+}
+.navbar-default{
+    width: 20%;
+}
+.nav-holder{
+    text-align: center;
+}
+.navigation{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 20px;
+}
+.info-link{
+    color: black;
+    text-decoration: none;
+    margin-left: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+.info-link:hover{
+    color: #62DA64;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 668px){
+    .navigation{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 342px){
+    a{
+        display: block;
+    }
+}
+@media screen and (max-width: 520px){
+    .footer{
+        margin-top: 10%;
+    }
+}
+@media screen and (max-width: 297px){
+    .footer{
+        margin-top: 20%;
+    }
+}
+
+@media screen and (max-width: 250px){
+    .media-button-cont{
+        display: none;
+    }
+}

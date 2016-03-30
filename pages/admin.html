@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Uncharted admin page</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../js/client.js"></script>
+    <script type="text/javascript" src="http://w.soundcloud.com/player/api.js"></script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+    <script>
+
+
+
+        login = {};
+        login.admin = function adminLogin(){
+            var password = $('.login').val();
+
+            $.ajax({
+                url: '/admin',
+                type: 'post',
+                data: {"password": password},
+                datatype: 'json',
+                success: function(data){
+                    if (data == 'true'){
+                         $('.main').css('display', 'block');
+                        $('.initlogin').remove();
+                    }
+                    else{
+                       var error =  $('<p></p>', {'text': 'Wrong password'});
+                        $("body").append(error);
+                        setTimeout(function(){
+                            error.remove()
+                        }, 1000);
+                    }
+                }
+            })
+        };
+
+
+
+        allsongs = [];
+
+        function getAllSongs() {
+            $.get('/allsongs', function (data) {
+                data = JSON.parse(data);
+                data.forEach(function (val) {
+                    {#song.song_id = val.song_id;
+                    song.id = val.id;
+                    song.song_title = val.song_title;
+                    song.user_name = val.user_name;
+                    song.user_id = val.user_id;
+                    song.user_image = val.user_image;
+                    song.song_image = val.song_image;
+                    song.song_url = val.song_url;
+                    song.likes = val.likes;
+                    console.log('comment???');#}
+                    var song = {};
+                    for (key in val) {
+                        song[key] = val[key];
+                    }
+                    allsongs.push(song);
+                });
+
+                allsongs.sort(function (a, b) {
+                    if (a.user_name.toLowerCase() > b.user_name.toLowerCase())
+                        return 1;
+                    return -1;
+                });
+
+                populateList();
+                randomSong();
+                populateInfo();
+            });
+        }
+
+        function randomSong() {
+            randSelect = Math.floor(Math.random() * allsongs.length);
+            $('.song-list option:eq(' + randSelect + ')').prop('selected', true)
+        }
+
+        function songFilter(song) {
+            foundText = false;
+            lookingFor = $('.list-search').val().toLowerCase();
+
+            if (lookingFor.length) {
+                for (key in song) {
+                    if (song.hasOwnProperty(key) && typeof song[key] === 'string') {
+                        if (song[key].toLowerCase().indexOf(lookingFor) > -1) {
+                            foundText = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                foundText = true;
+            }
+            return eval($('.list-eval').val()) && foundText;
+        }
+
+        function populateList() {
+            $songlist = $('.song-list');
+            $songlist.empty();
+
+            allsongs.forEach(function (val, ind) {
+                if (songFilter(val)) {
+                    $option = $('<option>');
+                    $option.attr('value', ind);
+                    $option.text(val.user_name + ' - ' + val.song_title);
+                    $songlist.append($option);
+                }
+            });
+
+            $('.counter').text($('option').length + ' / ' + allsongs.length);
+        }
+
+        function populateInfo() {
+            currentSong = allsongs[$('.song-list').val()];
+            $infocont = $('.info-cont');
+            $infocont.empty();
+
+            keys = Object.keys(currentSong);
+            keys.sort();
+
+            for (var ctr=0; ctr<keys.length; ctr++) {
+                $div = $('<div>');
+                k = keys[ctr];
+                $div.text(k + ': ' + currentSong[k]);
+                $infocont.append($div);
+            }
+
+            setCurrentSong();
+        }
+
+        function setCurrentSong() {
+            SC.get("/tracks/" + allsongs[$('.song-list').val()].song_id).then(function (sound) {
+                var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
+                $("#audio-player").attr("src", url);
+            });
+        }
+
+        $(function () {
+            SC.initialize({
+                client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
+            });
+
+            getAllSongs();
+
+            $('.song-list').on('change', populateInfo);
+
+            $('#addLike').on('click', function () {
+                $.post("/likesong", {'song-id': allsongs[$('.song-list').val()].song_id});
+            });
+
+            $('#removeSong').on('click', function () {
+                $.post('/removesong', {'song-id': allsongs[$('.song-list').val()].song_id});
+            });
+
+            $('.filter-list').on('click', function () {
+                populateList();
+                randomSong();
+                populateInfo();
+            });
+
+            $('#playsong').on('click', $('#audio-player').play);
+            $('#pausesong').on('click', $('#audio-player').pause);
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="initlogin">
+    <input class="login" type="text" placeholder="type the admin password">
+    <input class="submit" type="submit" value="submit" onclick="login.admin()">
+</div>
+<div class="main" style="display: none">
+
+    <select class="song-list"></select><br>
+
+    Eval filter: <input type="text" class="list-eval" value="true"><br>
+    Text search: <input type="text" class="list-search" value=""><br>
+
+    <input type="button" class="filter-list" value="Filter">
+    <span class="counter"></span>
+
+    <div class="info-cont"></div>
+
+    <button id="removeSong">Remove Song</button>
+    <button id="addLike">Add Like</button><br>
+
+    <!--
+    <button id="playsong">Play</button>
+    <button id="pausesong">Pause</button> -->
+    <br>
+    <audio controls id="audio-player" src=""></audio>
+</div>
+</body>
+
+</html>

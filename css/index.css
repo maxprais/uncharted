@@ -1,0 +1,278 @@
+.player-cont{
+    /*background-color: #38149A;*/
+    background-image: url("../images/supertrippysmall.jpg");
+    background-size: cover;
+    height: 100%;
+    width: 48%;
+    display: inline-block;
+}
+
+.sidebar{
+        background-image: url('../images/sidebar.jpg');
+    }
+.sidebar1{
+        background-image: url('../images/sidebar.jpg');
+    }
+
+
+@media screen and (min-width: 476px){
+    .player-cont{
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+    .media-button-cont{
+        margin-top: 45%;
+    }
+    .play-btn{
+    height: 150px;
+    width: 150px;
+}
+    .heart{
+        height: 50px;
+        width: 50px;
+        border: red;
+    }
+    .redheart{
+        height: 50px;
+        width: 50px;
+    }
+    .clickable{
+        cursor: pointer;
+    }
+    .skip-btn{
+        height: 50px;
+        width: 50px;
+    }
+    .pause-btn{
+        height: 50px;
+        width: 50px;
+    }
+}
+
+
+@media screen and (min-width: 487px){
+    .player-cont{
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+    .media-button-cont{
+        margin-top: 35%;
+    }
+}
+
+
+@media screen and (min-width: 489px){
+    .player-cont{
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+    .media-button-cont{
+        margin-top: 60%;
+
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .player-cont {
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .media-button-cont {
+        margin-top: 25%;
+    }
+    .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+
+}
+
+@media screen and (min-width: 542px){
+    .player-cont{
+        width: 80%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .logo{
+        width: 70%;
+    }
+    .media-button-cont{
+        margin-top: 20%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+
+@media screen and (min-width: 637px){
+
+    .logo{
+        width: 70%;
+    }
+}
+
+
+@media screen and (min-width: 674px){
+    .player-cont{
+        width: 80%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .logo{
+        width: 63%;
+    }
+    .media-button-cont{
+        margin-top: 25%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 759px){
+    .player-cont{
+        width: 80%;
+        background-size: cover;
+        /*!*background-image: url("../images/trippy.jpg");*!*/
+    }
+    .logo{
+        width: 63%;
+    }
+    .media-button-cont{
+        margin-top: 25%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 957px){
+    .player-cont{
+        width: 80%;
+        background-size: cover;
+    }
+    .media-button-cont{
+        margin-top: 25%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 1067px){
+    .player-cont{
+        width: 80%;
+        background-size: cover;
+    }
+    .media-button-cont{
+        margin-top: 15%;
+    }
+    .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 2500px){
+    .player-cont{
+        width: 80%;
+        background-size: cover;
+    }
+    .media-button-cont{
+        margin-top: 3%;
+    }
+    .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+
+.wrapper{
+    text-align: center;
+}
+.logo{
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+body{
+    /*background-color: #DDD8EB;*/
+    background-color: #787481;
+    moz-transition: all 1s;
+    webkit-transition: all 1s;
+    transition: all 1s;
+    font-weight: 100;
+    font-family: 'Century Gothic', sans-serif;
+    text-transform: capitalize;
+
+}
+
+
+.play-btn{
+    height: 110px;
+    width: 110px;
+}
+.heart{
+    height: 80px;
+    width: 80px;
+    margin-right: 30px;
+}
+.redheart{
+    height: 80px;
+    width: 80px;
+    margin-right: 30px;
+}
+.clickable{
+    cursor: pointer;
+}
+.skip-btn{
+    height: 120px;
+    width: 120px;
+    margin-left: 30px;
+}
+.pause-btn{
+    height: 120px;
+    width: 120px;
+}
+.artwork{
+    height: 300px;
+    width: 350px;
+}
+.song-info-cont{
+    display: block;
+}
+.play-btn-hover{
+    height: 120px;
+    width: 120px;
+}
+.skip-btn-hover{
+    height: 120px;
+    width: 120px;
+    margin-left: 30px;
+}
+.hidden{
+    display: none;
+}
+.title{
+    color: white;
+}
+.artist{
+    color: white;
+}
